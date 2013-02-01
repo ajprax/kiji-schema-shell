@@ -20,7 +20,8 @@
 package org.kiji.schema.shell
 
 import org.specs2.mutable._
-import org.kiji.schema.KijiConfiguration
+
+import org.kiji.schema.KConstants
 import org.kiji.schema.shell.ddl._
 import org.kiji.schema.shell.ddl.CompressionTypeToken._
 import org.kiji.schema.shell.ddl.LocalityGroupPropName._
@@ -283,7 +284,7 @@ class TestDDLParser extends SpecificationWithJUnit {
 
   def getParser(): DDLParser = {
     new DDLParser(new Environment(
-        KijiConfiguration.DEFAULT_INSTANCE_NAME,
+        KConstants.DEFAULT_INSTANCE_NAME,
         System.out,
         new MockKijiSystem(),
         new NullInputSource))

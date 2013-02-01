@@ -23,10 +23,8 @@ import scala.collection.mutable.Map
 import java.util.NoSuchElementException
 
 import org.kiji.schema.Kiji
-import org.kiji.schema.KijiConfiguration
-
 import org.kiji.schema.KijiAdmin
-import org.kiji.schema.KijiConfiguration
+import org.kiji.schema.KConstants
 import org.kiji.schema.KijiMetaTable
 import org.kiji.schema.layout.KijiTableLayout
 import org.kiji.schema.avro.TableLayoutDesc
@@ -40,7 +38,7 @@ class MockKijiSystem extends AbstractKijiSystem {
 
   {
     // Create 3 empty instances.
-    instanceData(KijiConfiguration.DEFAULT_INSTANCE_NAME) = Map[String, KijiTableLayout]()
+    instanceData(KConstants.DEFAULT_INSTANCE_NAME) = Map[String, KijiTableLayout]()
     instanceData("foo") = Map[String, KijiTableLayout]()
     instanceData("bar") = Map[String, KijiTableLayout]()
   }

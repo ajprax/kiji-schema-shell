@@ -63,7 +63,6 @@ WITH LOCALITY GROUP default WITH DESCRIPTION 'main storage' (
       res2.successful mustEqual true
       val env3 = res2.get.exec()
 
-
       // Programmatically test proper table creation.
       // Check that we have created as many locgroups, map families, and group families
       // as we expect to be here.

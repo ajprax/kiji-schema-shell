@@ -21,7 +21,7 @@ package org.kiji.schema.shell
 
 import java.io.PrintStream
 
-import org.kiji.schema.KijiConfiguration
+import org.kiji.schema.KConstants
 import org.kiji.schema.shell.input.JLineInputSource
 import org.kiji.schema.shell.input.InputSource
 
@@ -29,7 +29,7 @@ import org.kiji.schema.shell.input.InputSource
  * Runtime environment in which DDL commands are executed.
  */
 class Environment(
-    val instanceName: String = KijiConfiguration.DEFAULT_INSTANCE_NAME,
+    val instanceName: String = KConstants.DEFAULT_INSTANCE_NAME,
     val printer: PrintStream = Console.out,
     val kijiSystem: AbstractKijiSystem = KijiSystem,
     val inputSource: InputSource = new JLineInputSource) {

@@ -30,7 +30,6 @@ import org.apache.hadoop.hbase.client.HBaseAdmin
 import org.apache.hadoop.util.StringUtils
 
 import org.kiji.schema.Kiji
-import org.kiji.schema.KijiConfiguration
 
 import org.kiji.schema.KijiAdmin
 import org.kiji.schema.KijiURI
@@ -106,18 +105,6 @@ object KijiSystem extends AbstractKijiSystem {
   }
 
   /**
-   * Gets the Kiji configuration for the specified Kiji instance.
-   *
-   * <p>This method caches configuration instances for a given Kiji instance.</p>
-   *
-   * @param instance Name of the Kiji instance.
-   * @return A configuration for the specified Kiji instance.
-   */
-  private def kijiConf(instance: String): KijiConfiguration = {
-    new KijiConfiguration(HBaseConfiguration.create(), instance)
-  }
-
-  /**
    * Gets the Kiji instance implementation for the Kiji instance with the specified name.
    *
    * <p>This method caches the Kiji instances opened.</p>
@@ -129,7 +116,7 @@ object KijiSystem extends AbstractKijiSystem {
   private def kiji(instance: String): Option[Kiji] = {
     if (!kijiCache.contains(instance)) {
       try {
-        val theKiji = Kiji.Factory.open(kijiConf(instance))
+        val theKiji = Kiji.Factory.open(KijiURI.newBuilder().withInstanceName(instance).build(), HBaseConfiguration.create())
         kijiCache += (instance -> theKiji)
         Some(theKiji)
       } catch {
