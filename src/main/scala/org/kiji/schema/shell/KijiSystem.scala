@@ -116,7 +116,8 @@ object KijiSystem extends AbstractKijiSystem {
   private def kiji(instance: String): Option[Kiji] = {
     if (!kijiCache.contains(instance)) {
       try {
-        val theKiji = Kiji.Factory.open(KijiURI.newBuilder().withInstanceName(instance).build(), HBaseConfiguration.create())
+        val theKiji = Kiji.Factory.open(KijiURI.newBuilder().withInstanceName(instance).build(),
+          HBaseConfiguration.create())
         kijiCache += (instance -> theKiji)
         Some(theKiji)
       } catch {
